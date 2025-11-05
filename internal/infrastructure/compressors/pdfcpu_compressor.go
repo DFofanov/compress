@@ -6,7 +6,7 @@ import (
 
 	"github.com/pdfcpu/pdfcpu/pkg/api"
 
-	"compressor/internal/domain/entities"
+	"compress/internal/domain/entities"
 )
 
 // PDFCPUCompressor реализация компрессора с использованием PDFCPU

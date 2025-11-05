@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	"compressor/internal/domain/entities"
-	usecases "compressor/internal/usecase"
+	"compress/internal/domain/entities"
+	usecases "compress/internal/usecase"
 )
 
 // CLIController контроллер для командной строки
@@ -38,7 +38,7 @@ func NewCLIController(
 
 // HandleSingleFile обрабатывает сжатие одного файла
 func (c *CLIController) HandleSingleFile(inputPath, outputPath string) error {
-	fmt.Println("🔥 PDF Compressor - Сжатие PDF файлов")
+	fmt.Println("🔥 Compress - Сжатие файлов")
 	fmt.Println("====================================")
 
 	// Запрашиваем уровень сжатия
@@ -60,7 +60,7 @@ func (c *CLIController) HandleSingleFile(inputPath, outputPath string) error {
 
 // HandleDirectory обрабатывает сжатие директории
 func (c *CLIController) HandleDirectory(inputDir, outputDir string) error {
-	fmt.Println("🔥 PDF Compressor - Сжатие директории PDF файлов")
+	fmt.Println("🔥 Compress - Сжатие директории файлов")
 	fmt.Println("================================================")
 
 	// Запрашиваем уровень сжатия

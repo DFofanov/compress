@@ -5,9 +5,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"compressor/internal/domain/entities"
-	"compressor/internal/domain/repositories"
-	"compressor/internal/infrastructure/compressors"
+	"compress/internal/domain/entities"
+	"compress/internal/domain/repositories"
+	"compress/internal/infrastructure/compressors"
 )
 
 // CompressImageUseCase обрабатывает сжатие изображений

@@ -1,7 +1,7 @@
 package tui
 
 import (
-	"compressor/internal/domain/repositories"
+	"compress/internal/domain/repositories"
 	"fmt"
 )
 

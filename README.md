@@ -1,4 +1,4 @@
-# Universal File Compressor
+# Universal File Compress
 
 Высокопроизводительный инструмент на Go для массового сжатия PDF и изображений (JPEG/PNG) с удобным TUI-интерфейсом, гибкой конфигурацией и модульной архитектурой (Clean Architecture). Поддерживает выбор алгоритма сжатия (PDFCPU / UniPDF), параметрическое управление качеством, рекурсивную обработку директорий, параллельное выполнение, расширяемость через дополнительные компрессоры.
 
@@ -42,11 +42,11 @@
 
 ### Установка из исходников
 ```bash
-git clone https://github.com/your-username/compressor.git
-cd compressor
+git clone https://github.com/your-username/compress.git
+cd compress
 go mod tidy
-go build -o compressor cmd/main.go
-./compressor   # (Windows: compressor.exe)
+go build -o compress cmd/main.go
+./compress   # (Windows: compress.exe)
 ```
 
 ### Минимальный сценарий
@@ -86,7 +86,7 @@ output:
   log_level: "info"                  # debug|info|warning|error
   progress_bar: true
   log_to_file: true
-  log_file_name: "compressor.log"
+  log_file_name: "compress.log"
   log_max_size_mb: 10
 ```
 
@@ -158,7 +158,7 @@ output:
 Следует принципам Clean Architecture.
 
 Слои:
-- `domain` — сущности, ошибки, интерфейсы (`PDFCompressor`, `FileRepository`, `Logger`).
+- `domain` — сущности, ошибки, интерфейсы (`Сompress`, `FileRepository`, `Logger`).
 - `usecase` — сценарии: `ProcessPDFsUseCase`, `CompressImageUseCase`, `ProcessAllFilesUseCase`.
 - `infrastructure` — реализации (компрессоры, файловый репозиторий, конфигурация, логирование).
 - `presentation/tui` — UI слой, отображение прогресса, ввод настроек.
@@ -200,7 +200,7 @@ output:
 ## 10. Расширяемость
 
 ### Добавление нового PDF компрессора
-1. Создайте файл в `internal/infrastructure/compressors/` (например, `myengine_compressor.go`).  
+1. Создайте файл в `internal/infrastructure/compress/` (например, `myengine_compressor.go`).  
 2. Реализуйте интерфейс `PDFCompressor`.  
 3. Добавьте значение в конфигурацию (`compression.algorithm`).  
 4. Расширьте `main.go` switch.  
@@ -296,7 +296,7 @@ go build -o comprehensive_test.exe comprehensive.go
 ---
 ## Приложение A. Пример расширенного запуска
 ```bash
-PDF_CONFIG=./config.yaml ./compressor
+PDF_CONFIG=./config.yaml ./compress
 ```
 
 ## Приложение B. Метрики качества (пример)

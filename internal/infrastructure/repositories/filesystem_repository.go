@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"compressor/internal/domain/entities"
+	"compress/internal/domain/entities"
 )
 
 // FileSystemRepository реализация репозитория для работы с файловой системой

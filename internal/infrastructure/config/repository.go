@@ -1,7 +1,7 @@
 package config
 
 import (
-	"compressor/internal/domain/entities"
+	"compress/internal/domain/entities"
 	"os"
 
 	"gopkg.in/yaml.v3"

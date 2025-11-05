@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"compressor/internal/domain/entities"
-	"compressor/internal/domain/repositories"
+	"compress/internal/domain/entities"
+	"compress/internal/domain/repositories"
 )
 
 // ProcessPDFsUseCase сценарий автоматической обработки PDF файлов

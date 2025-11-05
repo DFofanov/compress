@@ -1,16 +1,16 @@
-# Docker Compose конфигурация для PDF Compressor
+# Docker Compose конфигурация для Compress
 version: '3.8'
 
 services:
-  # Основное приложение PDF Compressor
-  pdf-compressor:
+  # Основное приложение Compress
+  compress:
     build:
       context: .
       dockerfile: Dockerfile
       args:
         - GO_VERSION=1.24
-    image: pdf-compressor:latest
-    container_name: pdf-compressor-app
+    image: compress:latest
+    container_name: compress-app
     
     # Перезапуск при ошибках
     restart: unless-stopped
@@ -46,17 +46,17 @@ services:
     
     # Сеть
     networks:
-      - pdf-compressor-network
+      - compress-network
     
     # Лейблы для мониторинга
     labels:
       - "traefik.enable=false"
-      - "com.pdf-compressor.description=PDF Compressor Application"
-      - "com.pdf-compressor.version=1.0.0"
+      - "com.compress.description=Сompress Application"
+      - "com.compress.version=1.0.0"
     
     # Healthcheck
     healthcheck:
-      test: ["CMD", "pdf-compressor", "--version"]
+      test: ["CMD", "compress", "--version"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -65,7 +65,7 @@ services:
   # Файловый браузер для управления файлами (опционально)
   filebrowser:
     image: filebrowser/filebrowser:v2
-    container_name: pdf-compressor-filebrowser
+    container_name: compress-filebrowser
     restart: unless-stopped
     
     ports:
@@ -84,7 +84,7 @@ services:
     command: --config /config/settings.json
     
     networks:
-      - pdf-compressor-network
+      - compress-network
     
     labels:
       - "traefik.enable=true"
@@ -95,7 +95,7 @@ services:
   # Мониторинг логов (опционально)
   log-viewer:
     image: gohutool/docker-log-viewer:latest
-    container_name: pdf-compressor-logs
+    container_name: compress-logs
     restart: unless-stopped
     
     ports:
@@ -109,11 +109,11 @@ services:
       - LOG_FILES=/logs/*.log
     
     networks:
-      - pdf-compressor-network
+      - compress-network
 
 # Сети
 networks:
-  pdf-compressor-network:
+  compress-network:
     driver: bridge
     ipam:
       config:

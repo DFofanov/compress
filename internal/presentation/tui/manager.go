@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"compressor/internal/domain/entities"
+	"compress/internal/domain/entities"
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/rivo/tview"
@@ -176,7 +176,7 @@ func (m *Manager) loadConfig() {
 				LogLevel:     "info",
 				ProgressBar:  true,
 				LogToFile:    true,
-				LogFileName:  "compressor.log",
+				LogFileName:  "compress.log",
 				LogMaxSizeMB: 10,
 			},
 		}
@@ -230,7 +230,7 @@ func (m *Manager) createMainMenu() {
 		})
 
 	m.mainMenu.SetBorder(true).
-		SetTitle("🔥 Universal File Compressor - Главное меню").
+		SetTitle("🔥 Universal File Compress - Главное меню").
 		SetTitleAlign(tview.AlignCenter)
 
 	// Настраиваем стиль
@@ -302,7 +302,7 @@ func (m *Manager) createConfigScreen() {
 	m.updateLicenseFieldVisibility()
 
 	m.configForm.SetBorder(true).
-		SetTitle("🔥 Universal File Compressor - Конфигурация (ESC - выйти без сохранения)").
+		SetTitle("🔥 Universal File Compress - Конфигурация (ESC - выйти без сохранения)").
 		SetTitleAlign(tview.AlignCenter)
 
 	// Обработка ESC для выхода без сохранения

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"compressor/internal/domain/entities"
+	"compress/internal/domain/entities"
 )
 
 func TestNewCompressionConfig(t *testing.T) {

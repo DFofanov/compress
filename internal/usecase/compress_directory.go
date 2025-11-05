@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"compressor/internal/domain/entities"
-	"compressor/internal/domain/repositories"
+	"compress/internal/domain/entities"
+	"compress/internal/domain/repositories"
 )
 
 // CompressDirectoryUseCase сценарий сжатия всех PDF файлов в директории

@@ -19,5 +19,5 @@ output:
     log_level: info
     progress_bar: true
     log_to_file: true
-    log_file_name: compressor.log
+    log_file_name: compress.log
     log_max_size_mb: 10

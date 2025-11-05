@@ -8,7 +8,7 @@ import (
 	"github.com/unidoc/unipdf/v3/model"
 	"github.com/unidoc/unipdf/v3/model/optimize"
 
-	"compressor/internal/domain/entities"
+	"compress/internal/domain/entities"
 )
 
 // UniPDFCompressor реализация компрессора с использованием UniPDF

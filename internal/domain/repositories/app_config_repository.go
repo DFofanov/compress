@@ -1,6 +1,6 @@
 package repositories
 
-import "compressor/internal/domain/entities"
+import "compress/internal/domain/entities"
 
 // ConfigRepository интерфейс для работы с конфигурацией приложения
 type AppConfigRepository interface {

@@ -1,4 +1,4 @@
-module compressor
+module compress
 
 go 1.23.0
 

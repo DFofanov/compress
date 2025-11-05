@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"compressor/internal/domain/entities"
+	"compress/internal/domain/entities"
 )
 
 // ConfigRepository реализация репозитория конфигурации

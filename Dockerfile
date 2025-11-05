@@ -1,12 +1,12 @@
-# Dockerfile для PDF Compressor
+# Dockerfile для Compress
 # Multi-stage сборка для оптимизации размера образа
 
 # Стадия 1: Сборка приложения
 FROM golang:1.24-alpine AS builder
 
 # Метаданные
-LABEL maintainer="PDF Compressor Team"
-LABEL description="PDF Compressor - автоматическое сжатие PDF файлов"
+LABEL maintainer="Compress Team"
+LABEL description="Compress - автоматическое сжатие PDF и изображений"
 LABEL version="1.0.0"
 
 # Установка необходимых пакетов для сборки
@@ -40,7 +40,7 @@ USER builder
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
     -ldflags='-w -s -extldflags "-static"' \
     -a -installsuffix cgo \
-    -o pdf-compressor cmd/main.go
+    -o compress cmd/main.go
 
 # Стадия 2: Минимальный runtime образ
 FROM alpine:3.19
@@ -60,7 +60,7 @@ RUN mkdir -p /app/input /app/output /app/config /app/logs && \
     chown -R pdfuser:pdfuser /app
 
 # Копирование скомпилированного приложения
-COPY --from=builder /app/pdf-compressor /usr/local/bin/pdf-compressor
+COPY --from=builder /app/compress /usr/local/bin/compress
 
 # Копирование конфигурационного файла по умолчанию
 COPY config.yaml /app/config/config.yaml
@@ -86,18 +86,18 @@ VOLUME ["/app/input", "/app/output", "/app/config", "/app/logs"]
 
 # Healthcheck для мониторинга
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD pdf-compressor --version || exit 1
+    CMD compress --version || exit 1
 
 # Команда запуска
-ENTRYPOINT ["pdf-compressor"]
+ENTRYPOINT ["compress"]
 CMD ["--config", "/app/config/config.yaml"]
 
 # Метаданные образа
-LABEL org.opencontainers.image.title="PDF Compressor"
+LABEL org.opencontainers.image.title="Compress"
 LABEL org.opencontainers.image.description="Автоматическое сжатие PDF файлов с TUI интерфейсом"
 LABEL org.opencontainers.image.version="1.0.0"
 LABEL org.opencontainers.image.created="2024"
-LABEL org.opencontainers.image.vendor="PDF Compressor Team"
+LABEL org.opencontainers.image.vendor="Compress Team"
 LABEL org.opencontainers.image.licenses="MIT"
-LABEL org.opencontainers.image.documentation="https://github.com/your-username/pdf-compressor"
-LABEL org.opencontainers.image.source="https://github.com/your-username/pdf-compressor"
+LABEL org.opencontainers.image.documentation="https://github.com/your-username/compress"
+LABEL org.opencontainers.image.source="https://github.com/your-username/compress"

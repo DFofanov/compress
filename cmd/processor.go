@@ -1,10 +1,10 @@
 package main
 
 import (
-	"compressor/internal/domain/entities"
-	"compressor/internal/domain/repositories"
-	"compressor/internal/presentation/tui"
-	usecases "compressor/internal/usecase"
+	"compress/internal/domain/entities"
+	"compress/internal/domain/repositories"
+	"compress/internal/presentation/tui"
+	usecases "compress/internal/usecase"
 	"context"
 	"sync"
 )

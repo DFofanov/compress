@@ -3,7 +3,7 @@ package entities_test
 import (
 	"testing"
 
-	"compressor/internal/domain/entities"
+	"compress/internal/domain/entities"
 )
 
 func TestCompressionResult_CalculateCompressionRatio(t *testing.T) {

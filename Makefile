@@ -1,8 +1,8 @@
-# PDF Compressor Makefile
+# Compress Makefile
 # Build system and project management
 
 # Variables
-BINARY_NAME=compressor
+BINARY_NAME=compress
 MAIN_PATH=./cmd
 BUILD_DIR=bin
 COVERAGE_DIR=coverage
@@ -46,7 +46,7 @@ build: check-deps
 
 ## run: Run the application
 run:
-	@echo "$(BLUE)🚀 Starting PDF Compressor...$(RESET)"
+	@echo "$(BLUE)🚀 Starting Compress...$(RESET)"
 	@go run $(MAIN_PATH)
 
 ## test-unit: Run unit tests
@@ -134,7 +134,7 @@ dev:
 ## docker: Docker build
 docker:
 	@echo "$(YELLOW)🐳 Building Docker image...$(RESET)"
-	@docker build -t pdf-compressor:latest .
+	@docker build -t compress:latest .
 	@echo "$(GREEN)✅ Docker image built$(RESET)"
 
 ## release: Создать релиз (Windows PowerShell)
@@ -159,7 +159,9 @@ quickstart: install-deps build
 
 ## help: Show help for commands
 help:
-	@echo "$(BLUE)PDF Compressor - Available commands:$(RESET)"
+	# Help target
+help:
+	@echo "$(BLUE)Compress - Available commands:$(RESET)"
 	@echo ""
 	@echo "$(GREEN)Build and Run:$(RESET)"
 	@echo "  make install-deps     - Install dependencies"

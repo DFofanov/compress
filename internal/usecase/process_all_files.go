@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"compressor/internal/domain/entities"
-	"compressor/internal/domain/repositories"
-	"compressor/internal/infrastructure/compressors"
+	"compress/internal/domain/entities"
+	"compress/internal/domain/repositories"
+	"compress/internal/infrastructure/compressors"
 )
 
 // ProcessAllFilesUseCase сценарий для обработки всех поддерживаемых типов файлов

@@ -3,14 +3,14 @@ package main
 import (
 	"log"
 
-	"compressor/internal/domain/entities"
-	"compressor/internal/domain/repositories"
-	"compressor/internal/infrastructure/compressors"
-	"compressor/internal/infrastructure/config"
-	"compressor/internal/infrastructure/logging"
-	infraRepos "compressor/internal/infrastructure/repositories"
-	"compressor/internal/presentation/tui"
-	usecases "compressor/internal/usecase"
+	"compress/internal/domain/entities"
+	"compress/internal/domain/repositories"
+	"compress/internal/infrastructure/compressors"
+	"compress/internal/infrastructure/config"
+	"compress/internal/infrastructure/logging"
+	infraRepos "compress/internal/infrastructure/repositories"
+	"compress/internal/presentation/tui"
+	usecases "compress/internal/usecase"
 )
 
 func main() {
