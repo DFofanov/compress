@@ -1,0 +1,143 @@
+# Docker Compose конфигурация для PDF Compressor
+version: '3.8'
+
+services:
+  # Основное приложение PDF Compressor
+  pdf-compressor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - GO_VERSION=1.24
+    image: pdf-compressor:latest
+    container_name: pdf-compressor-app
+    
+    # Перезапуск при ошибках
+    restart: unless-stopped
+    
+    # Переменные окружения
+    environment:
+      - APP_CONFIG_PATH=/app/config/config.yaml
+      - APP_LOG_LEVEL=info
+      - APP_INPUT_DIR=/app/input
+      - APP_OUTPUT_DIR=/app/output
+      - APP_LOGS_DIR=/app/logs
+    
+    # Монтирование томов
+    volumes:
+      # Входные PDF файлы
+      - ./input_pdfs:/app/input:ro
+      # Выходная папка для сжатых файлов
+      - ./output_pdfs:/app/output:rw
+      # Конфигурация
+      - ./config.yaml:/app/config/config.yaml:ro
+      # Логи
+      - ./logs:/app/logs:rw
+    
+    # Ограничения ресурсов
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    
+    # Сеть
+    networks:
+      - pdf-compressor-network
+    
+    # Лейблы для мониторинга
+    labels:
+      - "traefik.enable=false"
+      - "com.pdf-compressor.description=PDF Compressor Application"
+      - "com.pdf-compressor.version=1.0.0"
+    
+    # Healthcheck
+    healthcheck:
+      test: ["CMD", "pdf-compressor", "--version"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Файловый браузер для управления файлами (опционально)
+  filebrowser:
+    image: filebrowser/filebrowser:v2
+    container_name: pdf-compressor-filebrowser
+    restart: unless-stopped
+    
+    ports:
+      - "8080:80"
+    
+    volumes:
+      - ./input_pdfs:/srv/input:rw
+      - ./output_pdfs:/srv/output:rw
+      - ./filebrowser.db:/database/filebrowser.db
+      - ./filebrowser-config.json:/config/settings.json
+    
+    environment:
+      - FB_DATABASE=/database/filebrowser.db
+      - FB_CONFIG=/config/settings.json
+    
+    command: --config /config/settings.json
+    
+    networks:
+      - pdf-compressor-network
+    
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filebrowser.rule=Host(`filebrowser.localhost`)"
+      - "traefik.http.routers.filebrowser.entrypoints=web"
+      - "traefik.http.services.filebrowser.loadbalancer.server.port=80"
+
+  # Мониторинг логов (опционально)
+  log-viewer:
+    image: gohutool/docker-log-viewer:latest
+    container_name: pdf-compressor-logs
+    restart: unless-stopped
+    
+    ports:
+      - "8081:8080"
+    
+    volumes:
+      - ./logs:/logs:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    
+    environment:
+      - LOG_FILES=/logs/*.log
+    
+    networks:
+      - pdf-compressor-network
+
+# Сети
+networks:
+  pdf-compressor-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+# Именованные тома
+volumes:
+  input_pdfs:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/input_pdfs
+      o: bind
+  
+  output_pdfs:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/output_pdfs
+      o: bind
+  
+  logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/logs
+      o: bind

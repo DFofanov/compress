@@ -1,0 +1,29 @@
+# Конфигурация PDF Compressor
+
+scanner:
+  source_directory: "D:\\PDFs\\Source"
+  target_directory: "D:\\PDFs\\Compressed"  # если не указано, то заменяет оригинальные файлы
+  replace_original: false  # true - заменяет оригинал, false - сохраняет в target_directory
+
+compression:
+  level: 50  # Процент сжатия (10-90)
+  algorithm: "pdfcpu"  # pdfcpu или unipdf
+  auto_start: true  # Автоматически начать сжатие при запуске
+  
+  # Настройки сжатия изображений
+  enable_jpeg: true   # Включить сжатие JPEG файлов
+  enable_png: true    # Включить сжатие PNG файлов
+  jpeg_quality: 30    # Качество JPEG в процентах от исходного (10-50 с шагом 5)
+  png_quality: 25     # Качество PNG в процентах от исходного (10-50 с шагом 5)
+
+processing:
+  parallel_workers: 2
+  timeout_seconds: 30
+  retry_attempts: 3
+
+output:
+  log_level: "info"  # debug, info, warning, error
+  progress_bar: true
+  log_to_file: true
+  log_file_name: "compressor.log"
+  log_max_size_mb: 10

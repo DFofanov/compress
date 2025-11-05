@@ -1,0 +1,72 @@
+# Git
+.git
+.gitignore
+README.md
+README_DETAILED.md
+INSTALLATION.md
+
+# Документация
+*.md
+docs/
+
+# Временные файлы
+*.tmp
+*.temp
+.tmp/
+temp/
+
+# Логи
+*.log
+logs/
+*.logs
+
+# Тестовые данные
+test_pdfs/
+example_pdfs/
+compressed_pdfs/
+output/
+testdata/
+
+# Сборки
+bin/
+build/
+dist/
+release/
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS файлы
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Покрытие тестами
+coverage/
+*.coverprofile
+coverage.out
+coverage.html
+
+# Зависимости (будут установлены в контейнере)
+vendor/
+
+# Конфигурационные файлы разработки
+.env
+.env.local
+.env.dev
+
+# Резервные копии
+*.bak
+*.backup
+
+# Профили производительности
+*.prof
+*.pprof

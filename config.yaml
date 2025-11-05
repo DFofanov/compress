@@ -1,0 +1,23 @@
+scanner:
+    source_directory: ./test
+    target_directory: ./compressed
+    replace_original: false
+compression:
+    level: 90
+    algorithm: pdfcpu
+    auto_start: false
+    unipdf_license_key: ""
+    enable_jpeg: true
+    enable_png: true
+    jpeg_quality: 50
+    png_quality: 50
+processing:
+    parallel_workers: 2
+    timeout_seconds: 30
+    retry_attempts: 3
+output:
+    log_level: info
+    progress_bar: true
+    log_to_file: true
+    log_file_name: compressor.log
+    log_max_size_mb: 10
