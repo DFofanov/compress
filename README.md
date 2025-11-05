@@ -292,12 +292,11 @@ go build -o comprehensive_test.exe comprehensive.go
 
 ---
 ## 15. Лицензия
-(Добавьте информацию о лицензии проекта при необходимости.)
 
 ---
 ## Приложение A. Пример расширенного запуска
 ```bash
-PDF_CONFIG=./config.yaml ./pdf-compressor
+PDF_CONFIG=./config.yaml ./compressor
 ```
 
 ## Приложение B. Метрики качества (пример)
